@@ -99,10 +99,14 @@ class Index extends React.Component{
 
       </header>
 
-      <section className="col-12">
-        <div className="row no-gutters">
-        <h2 className="col-12 text-center">Recent News</h2>
-        </div>
+
+
+      <section className="col-12" id="news">
+
+          <div className="row no-gutters">
+            <h2 className="col-12 text-center">Recent News</h2>
+          </div>
+          
       </section>
 
 
