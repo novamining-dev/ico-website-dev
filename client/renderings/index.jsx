@@ -22,7 +22,7 @@ class Index extends React.Component{
                                 		particles:{
 
                                       number:{
-                                        value:200,
+                                        value:111,
                                       },
 
                                       color:{
@@ -68,9 +68,9 @@ class Index extends React.Component{
 
               <label className="col-6 mr-auto">
 
-                <input type="text" name="Email" placeholder="Email" value="" className="col-12 text-center" />
+                <input type="text" name="Email" placeholder="Email" className="col-12 text-center" />
 
-                <input type="text" name="Password" value="" placeholder="Password" className="col-12 text-center" />
+                <input type="text" name="Password" placeholder="Password" className="col-12 text-center" />
 
                   <span className="row no-gutters d-flex">
                     <input type="checkbox" className="col-auto  "/>

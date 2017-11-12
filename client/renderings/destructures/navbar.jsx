@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 const logo = "https://image.flaticon.com/icons/svg/179/179437.svg";
 
 class Navbar extends React.Component{
@@ -24,6 +25,9 @@ class Navbar extends React.Component{
                             <Link to="#" className="col-auto">
                                Document
                             </Link>
+                            <a href="https://medium.com/novamining" className="col-auto">
+                               Blog
+                            </a>
                             <Link to="#" className="col-auto">
                                Ico
                             </Link>
