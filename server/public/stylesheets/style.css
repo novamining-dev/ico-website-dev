@@ -116,9 +116,9 @@ form label span p {
   color: white;
 }
 
-/* NEWS */
+/* Separator */
 
-#news div h2 {
+#separator div h2 {
   padding: 100px;
   font-size: 40px;
   text-transform: uppercase;
@@ -139,5 +139,5 @@ div .second_particle{
   top:0;
   left:0;
   z-index: 10;
-  height: 50vh !important;
+  height: 49vh !important;
 }
