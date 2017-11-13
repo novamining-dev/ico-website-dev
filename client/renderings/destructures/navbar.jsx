@@ -25,9 +25,9 @@ class Navbar extends React.Component{
                             <Link to="#" className="col-auto">
                                Document
                             </Link>
-                            <a href="https://medium.com/novamining" className="col-auto">
+                            <Link target="_blank" to="https://medium.com/novamining" className="col-auto">
                                Blog
-                            </a>
+                            </Link>
                             <Link to="#" className="col-auto">
                                Ico
                             </Link>
