@@ -7,8 +7,6 @@ import Crowdsale from './destructures/crowdsale.jsx'
 
 class Index extends React.Component{
 
-
-
   render(){
     return(
 
@@ -26,7 +24,7 @@ class Index extends React.Component{
 
 
 
-</div>
+      </div>
 
 
     )
