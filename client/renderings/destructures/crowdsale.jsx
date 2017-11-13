@@ -16,7 +16,7 @@ export default class Crowdsale extends React.Component{
 
                             particles:{
                               number:{
-                                value:111,
+                                value:50,
                               },
 
                               color:{
@@ -25,9 +25,9 @@ export default class Crowdsale extends React.Component{
                               },
 
                               size:{
-                                value:5,
+                                value:3,
                                 random:true,
-                                opacity:1,
+                                opacity:56,
                               },
 
                               line_linked: {
@@ -36,7 +36,7 @@ export default class Crowdsale extends React.Component{
                                 shadow:{
                                   enable:true,
                                   color:'white',
-                                  blur:5,
+                                  blur:2,
                                 },
                               }
 
