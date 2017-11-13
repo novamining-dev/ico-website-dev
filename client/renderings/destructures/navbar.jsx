@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
-const logo = "https://image.flaticon.com/icons/svg/179/179437.svg";
+const logo = "/images/Logo_1.png";
 
 class Navbar extends React.Component{
   render(){
@@ -14,7 +14,7 @@ class Navbar extends React.Component{
 
 
                 <div className="col-5 d-flex">
-                <img src={logo} alt="NovaMining Logo" className="col-4 col-sm-3 col-md-2 mx-auto align-self-start"/>
+                <img src={logo} alt="NovaMining Logo" className="col-6 col-sm-5 col-md-4 mx-auto align-self-start"/>
                 </div>
 
 
