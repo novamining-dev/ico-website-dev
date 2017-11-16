@@ -12,33 +12,6 @@ a {
   color: #00B7FF;
 }
 
-
-/* CROWDSALE */
-
-section#crowdsale_wrap{
-  color: white;
-  background-image: url('/images/background.png');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 50vh;
-  margin: 0;
-  padding: 0
-}
-
-section#crowdsale_wrap h3 , section#crowdsale_wrap h4 , section#crowdsale_wraph5 {
-  font-size: 20px;
-  padding: 10px;
-  margin: 15px 0 ;
-}
-
-
-div#crowd h2{
-  color: white;
-  padding: 10px;
-  margin: 5px 0;
-}
-
 /* HEADER */
 
 header{
@@ -91,9 +64,7 @@ div #logo{
 }
 
 /* NAVBAR */
-#navWrap{
-  /*height: 20vh;*/
-}
+
 #navbar {
   padding: 2px;
   margin: 25px 0;
@@ -140,4 +111,30 @@ div .second_particle{
   left:0;
   z-index: 10;
   height: 49vh !important;
+}
+
+/* CROWDSALE */
+
+section#crowdsale_wrap{
+  color: white;
+  background-image: url('/images/background.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50vh;
+  margin: 0;
+  padding: 0
+}
+
+section#crowdsale_wrap h3 , section#crowdsale_wrap h4 , section#crowdsale_wraph5 {
+  font-size: 20px;
+  padding: 10px;
+  margin: 15px 0 ;
+}
+
+
+div#crowd h2{
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
 }
