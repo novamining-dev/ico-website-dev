@@ -9,16 +9,17 @@ class Navbar extends React.Component{
     return(
       <div className="col-12" id="navWrap">
 
-        <nav className="row no-gutters" id="navbar">
+        <nav className="row no-gutters justify-content-center" id="navbar">
 
 
 
-                <div className="col-5 d-flex">
-                <img src={logo} alt="NovaMining Logo" className="col-6 col-sm-5 col-md-4 mx-auto align-self-start"/>
+                <div className="col-12 col-sm-12 col-lg-5 justify-content-center d-flex">
+                <img src={logo} alt="NovaMining Logo" className="col-12 col-sm-10 col-md-4 align-self-center"/>
                 </div>
 
 
-                        <div className="col-5 mx-auto text-left">
+                        <div className="col-12 col-lg-5 d-flex justify-content-center ">
+
                             <Link to="#" className="col-auto">
                                 News
                             </Link>

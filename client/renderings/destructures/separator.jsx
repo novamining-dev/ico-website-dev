@@ -5,6 +5,7 @@ export default class Separator extends React.Component{
 
   render(){
     return(
+
       <section className="col-12" id="separator">
 
           <div className="row no-gutters">
@@ -12,6 +13,7 @@ export default class Separator extends React.Component{
           </div>
 
       </section>
+      
     )
   }
 }

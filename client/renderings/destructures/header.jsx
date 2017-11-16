@@ -13,7 +13,7 @@ export default class Header extends React.Component{
       <header className="row no-gutters d-flex" id="header"  >
 
 
-                          <Particles retinaDetect="true" className="col-12 particle mr-auto" params={{
+                          <Particles retinaDetect="true" className="col-12 particle" params={{
 
                                     particles:{
 
@@ -52,19 +52,19 @@ export default class Header extends React.Component{
 
             <section className="col-12 d-flex" id="login_wrap">
 
-              <div className="row no-gutters align-self-center">
+              <div className="row no-gutters d-flex align-self-center justify-content-center ">
 
-                <div className="col-6 d-flex">
+                <div className=" col-12 col-md-6 align-self-center ">
 
-                  <div className="col-6 ml-auto">
-                    <img src={logo1} alt="" className="col-12 " id="logo" />
+                  <div className="col-12 justify-content-center justify-content-md-end d-flex">
+                    <img src={logo1} alt="" className="col-8 align-self-center " id="logo" />
                   </div>
 
                 </div>
 
-                <form className="col-sm-5 col-6 d-flex mx-auto align-self-center">
+                <form className="col-10 col-sm-8 col-md-5 d-flex justify-content-center">
 
-                  <label className="col-6 mr-auto">
+                  <label className="col-12 col-md-12 col-lg-7 align-self-center justify-content-center">
 
                     <input type="text" name="Email" placeholder="Email" className="col-12 text-center" />
 
