@@ -44,12 +44,12 @@ export default class Crowdsale extends React.Component{
 
 
                   <div className=" col-12" id="crowd" style={{position:'absolute' , zIndex:1000000000 , height:'100%'}}>
-                    <div className="row no-gutters d-flex" style={{height:'100%'}}>
+                    <div className="row no-gutters justify-content-center d-flex" style={{height:'100%'}}>
                       <h2 className="col-12 text-center">Crowdsale</h2>
-                        <div className="col-8 mx-auto align-self-start">
+                        <div className="col-8 d-flex justify-content-center align-self-start">
                             <div className="row no-gutters">
 
-                              <div className="col-4 align-self-center">
+                              <div className="col-12 col-md-4 align-self-center">
 
                                 <h3 className="col-12 text-center align-self-center">Sale Starts in</h3>
 
@@ -61,7 +61,7 @@ export default class Crowdsale extends React.Component{
 
                                     <div className="col-auto mx-auto hours">
                                       <p className="col-12 text-center">08  :</p>
-                                      <p className="col-12 text-center">Houts</p>
+                                      <p className="col-12 text-center">Hours</p>
                                     </div>
 
                                     <div className="col-auto mx-auto minutes">
@@ -77,7 +77,7 @@ export default class Crowdsale extends React.Component{
 
                               </div>
 
-                              <div className="div col-4 align-self-center">
+                              <div className="div col-12 col-md-4 align-self-center">
 
                                 <h3 className="col-12 text-center">1 eth = 100 NOVATOKEN</h3>
                                 <h4 className="col-12 text-center">50% discount</h4>
