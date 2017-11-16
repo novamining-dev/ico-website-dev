@@ -7,8 +7,6 @@ import Crowdsale from './destructures/crowdsale.jsx'
 
 class Index extends React.Component{
 
-
-
   render(){
     return(
 
@@ -26,6 +24,7 @@ class Index extends React.Component{
               <Separator text="How it works"/>
 
         {/*         <Footer/>           */}
+
 
 
           <section className="col-12" id="footer">

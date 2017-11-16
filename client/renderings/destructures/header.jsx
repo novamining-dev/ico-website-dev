@@ -68,7 +68,7 @@ export default class Header extends React.Component{
 
                     <input type="text" name="Email" placeholder="Email" className="col-12 text-center" />
 
-                    <input type="text" name="Password" placeholder="Password" className="col-12 text-center" />
+                    <input type="password" name="Password" placeholder="Password" className="col-12 text-center" />
 
                       <span className="row no-gutters d-flex">
                         <input type="checkbox" className="col-auto  "/>
