@@ -88,7 +88,8 @@ export default class Header extends React.Component{
                       <button type="button" className="col-12" 
                         onClick={()=>{
                                 (async ()=>{
-                                  let data= await Metamask.buyToken(100, 'wei');
+                                  let data= await Metamask.buyToken(1, 'finney');
+                              
                                   if(!data.error){
                                       alert("Success,your trxHash:"+data.transactionHash);
                                   }
