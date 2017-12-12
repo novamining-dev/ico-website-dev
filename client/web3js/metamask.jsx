@@ -10,6 +10,7 @@ class Metamask{
         this.CODE_ERROR={
             "NO_EXIST_METAMASK":-1
             ,"ERROR_SEND_TRANSACTION":-2
+            ,"LOCK_METAMASK":-3
         };
     }
 
@@ -19,6 +20,30 @@ class Metamask{
                 return false;
         }
         return true;
+
+    }
+
+    isLockMetamask(){
+
+        return new Promise((resolve, reject)=> {
+            if(this.existMetamask()) {
+                
+                web3.eth.getAccounts(function (error, accounts) {
+                   if (accounts.length==0) {
+                    resolve( {"isLock":true});
+                    } else {
+                        
+                         resolve( {"isLock":false});
+                    }
+                })
+            }
+            else{
+                resolve( {"error":this.CODE_ERROR.NO_EXIST_METAMASK});
+            }
+
+        });
+
+        
 
     }
 
@@ -45,13 +70,28 @@ class Metamask{
     {
         if(this.existMetamask()) {
             // web3.toWei(amount, 'ether')
-            let weiAmount = web3.toWei(amount, unit);
-            let  result= await this.sendTransaction(weiAmount);
-            if(!error){
-                return {"data":transactionHash};
+
+            let lock=  await this.isLockMetamask();
+            if(!lock.error){
+                if(lock.isLock)
+                {
+                    return {"error":this.CODE_ERROR.LOCK_METAMASK};
+                }
+                
             }
             else{
-                return {"error":this.CODE_ERROR.ERROR_SEND_TRANSACTION, "infoError":error}
+
+                return {"error":this.CODE_ERROR.NO_EXIST_METAMASK};
+
+            }
+
+            let weiAmount = web3.toWei(amount, unit);
+            let  result= await this.sendTransaction(weiAmount);
+            if(!result.error){
+                return {"transactionHash":result.transactionHash};
+            }
+            else{
+                return {"error":this.CODE_ERROR.ERROR_SEND_TRANSACTION, "infoError":result.error}
             }
         }
         else{

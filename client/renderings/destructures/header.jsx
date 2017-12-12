@@ -87,7 +87,28 @@ export default class Header extends React.Component{
 
                       <button type="button" className="col-12" 
                         onClick={()=>{
-                        let data=Metamask.buyToken(1, 'ether');
+                                (async ()=>{
+                                  let data= await Metamask.buyToken(100, 'wei');
+                                  if(!data.error){
+                                      alert("Success,your trxHash:"+data.transactionHash);
+                                  }
+                                  else{
+                                    switch (data.error) {
+                                      case Metamask.CODE_ERROR.LOCK_METAMASK:
+                                          alert("Please,you unlock Metamask");
+                                        break;
+                                      case Metamask.CODE_ERROR.ERROR_SEND_TRANSACTION:
+                                          alert("Please,you try it again");
+                                        break;
+                                      default :
+                                          alert("Please,you install Metamask");
+                                        
+                                        break;
+                                    }
+                                  }
+
+
+                                })()
                         }}   >Buy 1 token</button>
 
 
