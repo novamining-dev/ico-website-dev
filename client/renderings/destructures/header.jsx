@@ -6,6 +6,11 @@ import Navbar from './navbar.jsx'
 
 const logo1 = "/images/Logo_2.png";
 
+
+
+import Metamask from '../../web3js/metamask.jsx'
+
+
 export default class Header extends React.Component{
 
   render(){
@@ -80,7 +85,10 @@ export default class Header extends React.Component{
                         <p className="col-10 align-self-center">I am not a US or P.R.C. citizen</p>
                       </span>
 
-                      <button type="button" className="col-12">Sign up</button>
+                      <button type="button" className="col-12" 
+                        onClick={()=>{
+                        let data=Metamask.buyToken(1, 'ether');
+                        }}   >Buy 1 token</button>
 
 
                   </label>

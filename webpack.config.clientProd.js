@@ -1,9 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
+var AsyncAwaitPlugin = require('webpack-async-await') ;
 
 console.log(__dirname);
 module.exports = {
-  entry: './client/app.jsx',
+  
+  entry: ['babel-polyfill',  './client/app.jsx'],
   output: {
     path: path.resolve(__dirname, './server/public/javascripts/build'),
     filename: "app.js"
@@ -17,7 +19,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
           presets: ['es2015', 'react']
         }
@@ -26,6 +28,8 @@ module.exports = {
   }
   ,
   plugins: [
+
+
       new webpack.ProvidePlugin({
          $: "jquery",
          jQuery: "jquery",
