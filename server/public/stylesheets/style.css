@@ -15,7 +15,7 @@ a {
 /* HEADER */
 
 header{
-  height: 80vh;
+  height: 100vh;
   background-image: url('/images/background.png');
   background-position: center center;
   background-size: cover;
@@ -32,7 +32,7 @@ height: auto;
 top:0;
 left:0;
 z-index: 10000;
-height: 100%;
+
 }
 
 #login_wrap{
@@ -40,6 +40,7 @@ height: 100%;
   margin: 0;
   padding: 0;
 }
+
 #login_wrap div form label input {
   margin: 10px 0;
   padding: 5px;
@@ -137,4 +138,89 @@ div#crowd h2{
   color: white;
   padding: 10px;
   margin: 5px 0;
+}
+
+section#info_section {
+
+
+  background-image: url('/images/background.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+
+
+}
+section#info_section .row img {
+
+  height: 50px;
+  display: block;
+  width: auto;
+  margin: 50px auto;
+  padding: 0;
+
+}
+
+section#info_section .row h2 {
+  color: white;
+  font-size: 50px;
+  margin: 40px 0 20px;
+  padding: 10px 0;
+  font-weight: bolder;
+  text-transform: uppercase;
+
+}
+
+
+
+section#info_section .row .col-auto img {
+
+  min-height: 200px;
+  min-width: 200px;
+
+  padding: 5px;
+  margin: 50px 0;
+}
+
+section#info_section .row .name {
+
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: white;
+
+}
+
+section#info_section .row p {
+
+  font-weight: 300;
+  color: ghostwhite;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+
+section#info_section .row .image {
+
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 6px solid white;
+  margin: 50px 0;
+  background-position: center center;
+  background-size: cover;
+
+}
+
+section#info_section .row.row_names {
+  margin: 20px 0;
+
+}
+
+section#info_section .row div {
+  margin: 20px 0;
+}
+
+ #footer img , #footer h2 , #footer label{
+  margin: 40px 0;
 }

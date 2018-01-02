@@ -85,11 +85,12 @@ export default class Header extends React.Component{
                         <p className="col-10 align-self-center">I am not a US or P.R.C. citizen</p>
                       </span>
 
-                      <button type="button" className="col-12" 
+                      <p className="col-12 text-center">Flash</p>
+                      <button type="button" className="col-12"
                         onClick={()=>{
                                 (async ()=>{
                                   let data= await Metamask.buyToken(1, 'finney');
-                              
+
                                   if(!data.error){
                                       alert("Success,your trxHash:"+data.transactionHash);
                                   }
@@ -103,7 +104,7 @@ export default class Header extends React.Component{
                                         break;
                                       default :
                                           alert("Please,you install Metamask");
-                                        
+
                                         break;
                                     }
                                   }

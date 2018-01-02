@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 import Header from './destructures/header.jsx'
 import Separator from './destructures/separator.jsx';
 import Crowdsale from './destructures/crowdsale.jsx'
+import Team from './destructures/team.jsx'
+import Advisors from './destructures/advisors.jsx'
+
+const logo1 = "/images/Logo_1.png";
 
 
 
@@ -25,51 +29,45 @@ class Index extends React.Component{
 
               <Separator text="How it works"/>
 
-        {/*         <Footer/>           */}
+              <Team/>
+              <Advisors/>
 
 
 
-          <section className="col-12" id="footer">
 
-            <div className="row no-gutters d-flex">
+        {/*         <Footer/>
 
-                <h3 className="col-12 text-center">
-                  Contact Us
-                </h3>
+          */}
 
-                <p className="col-12 text-center">contact@nova.mining</p>
+          <section className="col-12 d-flex justify-content-center align-self-center" id="footer">
 
-                <label  className="col-6 mx-auto">
-                <p className="col-12 text-center">Subscribe to the nova newsletter</p>
+            <div className="row no-gutters d-flex justify-content-center">
 
-                  <span className="row no-gutters">
-                    <input type="text" placeholder="Your email address" className="col-8 text-center"/>
-                    <button className="col-4">Subscribe</button>
-                  </span>
-                </label>
-
-
-                <div className="col-9 mx-auto">
-                  <div className="row no-gutters">
-                  <div className="col-4">
+                <div className="col-10">
                     <div className="row no-gutters">
-                      <h4 className="col-12 text-center">Community</h4>
-                    </div>
-                  </div>
 
-                    <div className="col-4">
-                      <div className="row no-gutters">
-                        <h4 className="col-12 text-center">Follow</h4>
-                      </div>
+                    <div className="col-4 mx-auto " >
+
+                      <img src={logo1} alt="" className="col-12" />
+
                     </div>
 
-                    <div className="col-4">
-                      <div className="row no-gutters">
-                        <h4 className="col-12 text-center">Documents</h4>
-                      </div>
+                    <a href="https://www.html.it" target="_blank" className="col-12 text-center">contact@nova.mining</a>
+
+                    <label  className="col-4 mx-auto">
+                    <p className="col-12 text-center">Subscribe to the nova newsletter</p>
+
+                      <span className="row no-gutters">
+                        <input type="text" placeholder="Your email address" className="col-10 text-center"/>
+                        <button className="col-2">Subscribe</button>
+                      </span>
+                    </label>
+
+
                     </div>
-                  </div>
                 </div>
+
+
 
             </div>
 

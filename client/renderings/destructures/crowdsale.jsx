@@ -81,7 +81,7 @@ export default class Crowdsale extends React.Component{
 
                                 <h3 className="col-12 text-center">1 eth = 100 NOVATOKEN</h3>
                                 <h4 className="col-12 text-center">50% discount</h4>
-                                <h5 className="col-12 text-center">Minimal investement 20 NVT</h5>
+                                <h5 className="col-12 text-center">Minimal investement 20 NTK</h5>
                                 <p className="col-12 text-center">Dates: 13 November 2017 14:00 UTC -
       13 December 2017 14:00 UTC</p>
 
