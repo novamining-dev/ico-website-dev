@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var AsyncAwaitPlugin = require('webpack-async-await') ;
+//var AsyncAwaitPlugin = require('webpack-async-await') ;
 
 console.log(__dirname);
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
         }
