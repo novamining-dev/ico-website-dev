@@ -4,9 +4,10 @@
 		"startDev:client": "webpack-dev-server --progress --inline --hot --config webpack.config.client.js",
 		"startDev:gulp": "gulp",
 		"startDev": "rm -rf ./.build && npm-run-all --parallel startDev:server startDev:client startDev:gulp",
-		"startProd:client": "rm -rf ./server/public/javascripts/build && webpack --config webpack.config.clientProd.js",
+		"startProd:client": "webpack --config webpack.config.clientProd.js",
 		"startProd:server": "node ./server/bin/www",
-		"startProd": "npm-run-all startProd:client startProd:server"
+		"startProd": "npm-run-all startProd:client startProd:server",
+		"start": "node ./server/bin/www"
 	},
 	"dependencies": {
 		"babel-core": "^6.23.1",
@@ -55,6 +56,7 @@
 		"react-dom": "*",
 		"style-loader": "^0.19.1",
 		"webpack": "^3.8.1",
-		"webpack-dev-server": "^2.9.7"
+		"webpack-dev-server": "^2.9.7",
+		"@google-cloud/nodejs-repo-tools": "1.4.17"
 	}
 }
