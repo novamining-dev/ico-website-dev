@@ -8,11 +8,31 @@ import Team from './destructures/team.jsx'
 import Advisors from './destructures/advisors.jsx'
 
 const logo1 = "/images/Logo_1.png";
-
-
+const articles = [
+  {
+    id:1,
+    title:'novamining',
+    url:'https://google.com',
+    content: 'content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content '
+  },
+  {
+    id:2,
+    title:'novamining',
+    url:'https://google.com',
+    content: 'content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content '
+  },
+  {
+    id:3,
+    title:'novamining',
+    url:'https://google.com',
+    content: 'content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content '
+  }
+]
 
 class Index extends React.Component{
-
+  componentDidMount(){
+    console.log(articles)
+  }
   render(){
     return(
 
@@ -24,6 +44,37 @@ class Index extends React.Component{
         <Header/>
 
           <Separator text="Recent News"/>
+
+            <div className="col-12">
+              <div className="row no-gutters">
+
+                  {
+
+                     articles.map(article => {
+                                  return (
+
+                                  <div className="col-12 col-sm-4">
+                                    <div className="row no-gutters d-fles justify-content-center" key={article.id}>
+
+                                          <h1 className="col-12 text-center"  >
+                                            {article.title}
+                                         </h1>
+               <p className="col-10 text-center"  style={{  whiteSpace:'nowrap' , overflow:'hidden' , textOverflow:'ellipsis'}}>
+                                             {article.content}
+                                          </p>
+
+                                          <a href={article.url} className="col-12 text-center"  >
+                                            Read
+                                         </a>
+
+                                    </div>
+                                  </div>
+
+                                 )
+                                })
+                            }
+                  </div>
+              </div>
 
             <Crowdsale/>
 
