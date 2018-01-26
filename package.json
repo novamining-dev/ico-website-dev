@@ -37,7 +37,10 @@
 		"start-server-webpack-plugin": "^2.1.2",
 		"webpack": "^2.2.1",
 		"webpack-node-externals": "^1.5.4",
-		"webpack2-stream-watch": "^3.2.2"
+		"webpack2-stream-watch": "^3.2.2",
+		"medium-sdk": "^0.0.4",
+		"rss-parser": "^3.0.1",
+		"cheerio": "^1.0.0-rc.2"
 	},
 	"devDependencies": {
 		"babel-core": "^6.4.5",

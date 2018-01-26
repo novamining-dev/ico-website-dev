@@ -8,7 +8,7 @@ import Team from './destructures/team.jsx'
 import Advisors from './destructures/advisors.jsx'
 
 const logo1 = "/images/Logo_1.png";
-const articles = [
+const articles =window["rss"] /* [
   {
     id:1,
     title:'novamining',
@@ -28,7 +28,7 @@ const articles = [
     content: 'content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content '
   }
 ]
-
+*/
 class Index extends React.Component{
   componentDidMount(){
     console.log(articles)
@@ -59,8 +59,8 @@ class Index extends React.Component{
                                           <h1 className="col-12 text-center"  >
                                             {article.title}
                                          </h1>
-               <p className="col-10 text-center"  style={{  whiteSpace:'nowrap' , overflow:'hidden' , textOverflow:'ellipsis'}}>
-                                             {article.content}
+               <p className="col-10 text-center"  style={{  "min-height": '50px', overflow:'hidden' , textOverflow:'ellipsis'}}   dangerouslySetInnerHTML={{__html: article.content}} >
+                                     
                                           </p>
 
                                           <a href={article.url} className="col-12 text-center"  >
