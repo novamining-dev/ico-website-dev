@@ -1,42 +1,41 @@
 import React , { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link , Switch , Redirect  } from "react-router-dom";
-// import { database } from '../firebase';
-// import axios from 'axios';
-// import '../css/App.css';
-import { Container } from './intracontainer.jsx';
-import { Header } from './header.jsx';
-import { Team } from './team.jsx';
-import { Footer } from './footer.jsx';
-// import Slider from 'rc-slider';
-const bgblue = '/images/bgblue.jpg';
-const bggreen = '/images/bggreen.jpg';
-const bgoverview = '/images/bgoverview.jpg';
-const bgpurple = '/images/bgpurple.jpg';
-const cloud = '/images/cloud.png';
-const competitive = '/images/competitive.png';
-const dashboard = '/images/icon-dashboard.png';
-const decentralized = '/images/decentralized.png';
-const distribution = '/images/distribute.png';
-const eyes = '/images/eyes.png';
-const fair = '/images/fairness.png';
-const funds = '/images/funds.png';
-const header = '/images/Header_background.png';
-const htw = '/images/htw.png';
-const logo = '/images/Logo_1.png';
-const market = '/images/icon-market.png';
-const mediumbg = '/images/bgmedium.jpg';
-const pos = '/images/icon-pos.png';
-const pohc = '/images/icon-pohc.png';
-const smartContract = '/images/icon-smart-contract.png';
-const smartWallet = '/images/icon-smart-wallet.png';
+import { database } from '../firebase';
+import axios from 'axios';
+import '../css/App.css';
+import { Container } from './intracontainer.js';
+import { Documentation } from './documents.js';
+import { Header } from './header.js';
+import { Join } from './join.js';
+import { Team } from './team.js';
+import { Footer } from './footer.js';
+import Slider from 'rc-slider';
+import bgblue from '../images/bgblue.jpg';
+import bggreen from '../images/bggreen.jpg';
+import bgoverview from '../images/bgoverview.jpg';
+import bgpurple from '../images/bgpurple.jpg';
+import cloud from '../images/cloud.png';
+import competitive from '../images/competitive.png';
+import dashboard from '../images/icon-dashboard.png';
+import decentralized from '../images/decentralized.png';
+import distribution from '../images/distribute.png';
+import eyes from '../images/eyes.png';
+import fair from '../images/fairness.png';
+import funds from '../images/funds.png';
+import header from '../images/header_background.png';
+import htw from '../images/htw.png';
+import logo from '../images/Logo_1.png';
+import market from '../images/icon-market.png';
+import mediumbg from '../images/bgmedium.jpg';
+import pos from '../images/icon-pos.png';
+import pohc from '../images/icon-pohc.png';
+import smartContract from '../images/icon-smart-contract.png';
+import smartWallet from '../images/icon-smart-wallet.png';
 
-// import 'rc-slider/assets/index.css';
-// import Select from 'react-select';
-// import 'react-select/dist/react-select.css';
+import 'rc-slider/assets/index.css';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
-const logo1 = "/images/Logo_1.png";
-const articles = window["rss"]
 
 class Main extends Component {
 
@@ -59,13 +58,14 @@ class Main extends Component {
   }
 
   handleChange(e){
-    var change = {};
-      change[e.target.name] = e.target.value;
-        this.setState(change);
+    var change = {}
+      change[e.target.name] = e.target.value
+        this.setState(change)
   }
 
-  handleSelect(selectedOption){
+  handleSelect = (selectedOption) => {
     this.setState({ selectedOption });
+
   }
 
   componentWillMount(){
@@ -76,59 +76,58 @@ class Main extends Component {
     //
   }
 
-  // submit(){
-  //
-  //   let email = this.state.email;
-  //     var re = email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  //       console.log(re);
-  //         let addUser = [{
-  //             name: this.state.name,
-  //               email: this.state.email,
-  //                 amount: this.state.amount,
-  //                   conversion: Number(this.state.amount) / this.state.change,
-  //                     date:  this.state.date.toString(),
-  //                 }]
-  //
-  //   console.log(addUser);
-  //
-  //   let v = this.state;
-  //   const submitable = v.amount.length > 0 && v.crypto.lenght > 0 && re!== null && v.email.lenght > 0;
-  //   submitable === true ? this.setState({isSubmitable:true}) : null;
-  //
-  //           let data = database.ref()
-  //                             .child('ico/landing/whitelist')
-  //                               .push(addUser ,
-  //                               function(error){
-  //                                 if(error){
-  //                                   console.log(error)
-  //                                 }else{
-  //                                   console.log('data has been saved')
-  //                                   return true;
-  //                                 }
-  //                                 return;
-  //                               })
-  //
-  //             }
+  submit = () => {
+
+    let email = this.state.email;
+      var re = email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        console.log(re);
+          let addUser = [{
+              name: this.state.name,
+                email: this.state.email,
+                  amount: this.state.amount,
+                    conversion: Number(this.state.amount) / this.state.change,
+                      date:  this.state.date.toString(),
+                  }]
+
+    console.log(addUser);
+
+    // let v = this.state;
+    // const submitable = v.amount.length > 0 && v.crypto.lenght > 0 && re!== null && v.email.lenght > 0;
+    //   submitable === true ? this.setState({isSubmitable:true}) : null;
+
+            let data = database.ref()
+                              .child('ico/landing/whitelist')
+                                .push(addUser ,
+                                function(error){
+                                  if(error){
+                                    console.log(error)
+                                  }else{
+                                    console.log('data has been saved')
+                                    return true;
+                                  }
+                                  return;
+                                })
+
+              }
 
   componentDidMount(){
-    console.log(articles)
     console.log(this.props)
-    // database.ref().on('value' , (snapshot) => {
-    //       console.log(snapshot.val())
-    //     });
-    //     axios.get('https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=10').then(
-    //      function(response){
-    //        return response;
-    //      }
-    //   ).then(data =>{
-    //     console.log(data.data[1].price_usd);
-    //     let price = data.data[1].price_usd;
-    //     data.error ? this.setState({error:'error'}) :
-    //     this.setState({ change: price})
-    //       }).catch(error=>{
-    //         console.log(error);
-    //         throw error;
-    //       });
+    database.ref().on('value' , (snapshot) => {
+          console.log(snapshot.val())
+        });
+        axios.get('https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=10').then(
+         function(response){
+           return response;
+         }
+      ).then(data =>{
+        console.log(data.data[1].price_usd);
+        let price = data.data[1].price_usd;
+        data.error ? this.setState({error:'error'}) :
+        this.setState({ change: price})
+          }).catch(error=>{
+            console.log(error);
+            throw error;
+          });
   }
 
 
@@ -364,7 +363,7 @@ class Main extends Component {
             <section className="row no-gutters d-flex justify-content-center" id="benefits" style={{background:`url(${bgpurple})`}}>
 
               <p className="col-12 text-center light white p opaque upcase mt-50">Overview on</p>
-              <h3 className="col-12 text-center light white h1 upcase mb-50 white ">Main <span className="normal">Benefits</span></h3>
+              <h3 className="col-12 text-center light white h1 upcase mb-50 ">Main <span className="normal">Benefits</span></h3>
 
 
 
@@ -911,35 +910,6 @@ class Main extends Component {
              linking="/GitHub"
              classes="fab fa-medium fa-3x"
              buttonIcon="fab fa-medium fa-2x" altSource="icon"/>
-
-             <section className="alternative contain row no-gutters d-flex">
-
-             <p className="green col-12 text-center upcase p mt-50 mb-0" >Overview on</p>
-             <h1 className="col-12 text-center mt-0 mb-50">XNM TOKEN</h1>
-
-             <div className="col-12 mt-50 mb-50">
-                <div className="row no-gutters">
-
-                    {
-                      articles.map(article =>{
-                        return(
-                          <div className="col-12 col-sm-4 " key={article.id} onClick={()=> window.open(article.url)}>
-                             <div className="row no-gutters d-flex justify-content-center text-center">
-
-                               <h3 className="col-10 limited hoverable ">{article.title.toString()}</h3>
-                               <p className="col-10 limited hoverable">{article.content}</p>
-
-                             </div>
-                          </div>
-
-                        )
-                      })
-                    }
-
-                </div>
-             </div>
-
-             </section>
 
              <Footer
               source={logo}

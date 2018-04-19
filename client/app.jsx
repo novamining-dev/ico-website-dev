@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom';
 // window.Popper = Popper;
 // import Popper from 'popper.js';
 //bootstrap = require('bootstrap');
-import { BrowserRouter, Route, Link , Switch} from 'react-router-dom';
 import { AppContainer } from "react-hot-loader";
-import Index from './renderings/index.jsx';
+import { BrowserRouter as Router, Route, Switch , Redirect } from "react-router-dom";
+import Main from './renderings/index.jsx';
+import Login from './renderings/login.jsx'
 
 class App extends React.Component{
   constructor(props){
@@ -17,15 +18,17 @@ class App extends React.Component{
   render(){
     return (
 
-        <BrowserRouter>
+        <Router>
 
           <Switch>
 
-            <Route exact path="/" component={Index}/>
+            <Route exact path="/" component={Main}/>
+              <Route exact path="/Auth" component={Login}/>
+                <Redirect to="/"/>
 
           </Switch>
 
-        </BrowserRouter>
+        </Router>
 
     )
   }
