@@ -9,7 +9,7 @@ import { AppContainer } from "react-hot-loader";
 import { BrowserRouter as Router, Route, Switch , Redirect } from "react-router-dom";
 import Main from './renderings/index.jsx';
 import Login from './renderings/login.jsx'
-
+import Documentation from './renderings/documents.jsx'
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -23,8 +23,9 @@ class App extends React.Component{
           <Switch>
 
             <Route exact path="/" component={Main}/>
-              <Route exact path="/Auth" component={Login}/>
-                <Redirect to="/"/>
+            <Route path="/Documentation" component={Main}/>
+
+              <Redirect to="/"/>
 
           </Switch>
 
