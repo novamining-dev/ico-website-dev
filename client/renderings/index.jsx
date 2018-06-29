@@ -914,25 +914,31 @@ class Main extends Component {
 
              <section className="alternative contain row no-gutters d-flex">
 
-             <p className="green col-12 text-center upcase p mt-50 mb-0" >Overview on</p>
-             <h1 className="col-12 text-center mt-0 mb-50">XNM TOKEN</h1>
+             <p className="green col-12 text-center upcase p mt-50 mb-0" >Our latest updates on</p>
+             <h1 className="col-12 text-center mt-0 mb-50 upcase light">Media & <span className="normal">Press</span></h1>
 
              <div className="col-12 mt-50 mb-50">
                 <div className="row no-gutters">
 
                     {
+
                       articles.map(article =>{
-                        return(
-                          <div className="col-12 col-sm-4 " key={article.id} onClick={()=> window.open(article.url)}>
-                             <div className="row no-gutters d-flex justify-content-center text-center">
+                        let text = article.date;
+                          let point = text.search('2018')
+                            let date = text.slice(0 , [point + 4])
 
-                               <h3 className="col-10 limited hoverable ">{article.title.toString()}</h3>
-                               <p className="col-10 limited hoverable">{article.content}</p>
+                            return(
+                              <div className="col-12 col-sm-4 " key={article.id} onClick={()=> window.open(article.url)}>
+                                <div className="row no-gutters d-flex justify-content-center text-left ">
+                                  <img src={article.url_image} className=" hoverable col-10 h-75 mb-15"  alt=""/>
+                                  <p className="col-10 upcase  hoverable green f15">{date}</p>
+                                  <h3 className="col-10  limited hoverable ">{article.title}</h3>
+                                  <p className="col-10 limited2 hoverable">{article.content}</p>
 
-                             </div>
-                          </div>
+                                  </div>
+                                  </div>
 
-                        )
+                                )
                       })
                     }
 

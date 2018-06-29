@@ -17,23 +17,30 @@ router.get('/', function(req, res, next) {
   {
     item=feed.items[i];
     var $ = cheerio.load(item["content:encoded"])
-    var p1= $( $('p')[0]).html()
-    var p2= $( $('p')[1]).html()
+    var p1= $( $('p')[0]).text()
+    var p2= $( $('p')[1]).text()
+
+    var splitLinks = item["content:encoded"].split('<img alt="" src=');
+    var point = splitLinks[1].search(' />');
+    var d = splitLinks[1].slice(0,point);
+    var url_image = d.split('"')
 
     var itemRss={
       id:i,
       title:item.title,
+      date:item.pubDate,
       url:item.link,
-      content:"<p>"+p1+"</p>"/*+"<p>"+p2+"</p>"*/
+      url_image:url_image[1],
+      content: p1 + p2
     }
 
     outputRss.push(itemRss);
   }
-    res.render('index', { title: 'Express',"infoRss":outputRss });
+  res.render('index', { title: 'NovaMining XNM',"infoRss":outputRss });
 
   }
   ,function(){
-    res.render('index', { title: 'Express',"infoRss":outputRss });
+    res.render('index', { title: 'NovaMining XNM',"infoRss":outputRss });
   }
 )
 
@@ -62,16 +69,16 @@ router.get('/Auth', function(req, res, next) {
       id:i,
       title:item.title,
       url:item.link,
-      content:"<p>"+p1+"</p>"/*+"<p>"+p2+"</p>"*/
+      content:p1/*+"<p>"+p2+"</p>"*/
     }
 
     outputRss.push(itemRss);
   }
-    res.render('index', { title: 'Express',"infoRss":outputRss });
+    res.render('index', { title: 'NovaMining XNM',"infoRss":outputRss });
 
   }
   ,function(){
-    res.render('index', { title: 'Express',"infoRss":outputRss });
+    res.render('index', { title: 'NovaMining',"infoRss":outputRss });
   }
 )
 
