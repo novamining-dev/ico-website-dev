@@ -927,9 +927,8 @@ class Main extends Component {
                   </div>
               </div>
           </section>
-            <section className="row no-gutters d-flex justify-content-center alternative contain " id="Roadmap">
+          
               <Timeline source={bggreen} />
-              </section>
 
               <Container image={bgblue}
                preTitle="Join our"
@@ -996,7 +995,7 @@ class Main extends Component {
 
               </section>
              <Footer
-              source={footerlogo}
+              source={logo}
              />
 
       </div>

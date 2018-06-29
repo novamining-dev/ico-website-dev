@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
 const green = '#00b072';
 const violet = '#512d81';
 const timeInfo = [{
@@ -155,25 +154,25 @@ const timeInfo = [{
 ]
 export const Timeline = (props) => (
 
-<div className="col-12" >
+<div className="row no-gutters justify-content-center alternative contain" >
+	<div className="col-12">
+		<VerticalTimeline className="row no-gutters justify-content-center">
 
-	<VerticalTimeline className="row no-gutters">
-
-	{timeInfo.map( event => (
-				<VerticalTimelineElement
-				key={event.id}
-				className="vertical-timeline-element--work col-12 text-center"
-				date={event.date}
-				iconStyle={{backgroundColor:event.color,color: '#fff' , padding:0 , textAlign:'center'}}
-				icon={<i className={[event.icon + ' white']} style={{height:25 , width:25 }}></i>} >
-				<h3 className="vertical-timeline-element-title col-12 text-left">{event.title}</h3>
-				<h4 className="vertical-timeline-element-subtitle col-12 text-left"> {event.subtitle ? event.subtitle : null}</h4>
-		</VerticalTimelineElement>
-	))}
+		{timeInfo.map( event => (
+					<VerticalTimelineElement
+					key={event.id}
+					className="vertical-timeline-element--work col-12 text-center"
+					date={event.date}
+					iconStyle={{backgroundColor:event.color,color: '#fff' , padding:0 , textAlign:'center'}}
+					icon={<i className={[event.icon + ' white']} style={{height:25 , width:25 }}></i>} >
+					<h3 className="vertical-timeline-element-title col-12 text-left">{event.title}</h3>
+					<h4 className="vertical-timeline-element-subtitle col-12 text-left"> {event.subtitle ? event.subtitle : null}</h4>
+			</VerticalTimelineElement>
+		))}
 
 	
-
 	</VerticalTimeline>
+  </div>
 </div>
 
 
