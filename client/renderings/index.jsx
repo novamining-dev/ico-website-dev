@@ -8,6 +8,7 @@ import { Container } from './intracontainer.jsx';
 import { Header } from './header.jsx';
 import { Team } from './team.jsx';
 import { Footer } from './footer.jsx';
+import { Timeline } from './timeline.jsx'
 // import Slider from 'rc-slider';
 const bgblue = '/images/bgblue.jpg';
 const bggreen = '/images/bggreen.jpg';
@@ -48,6 +49,7 @@ class Main extends Component {
       crypto:'',
       data:undefined,
       date: new Date(),
+      dropdown:'none',
       email:'',
       isMenu:false,
       isSubmitActive: false,
@@ -59,14 +61,20 @@ class Main extends Component {
   }
 
   handleChange(e){
-    var change = {};
-      change[e.target.name] = e.target.value;
-        this.setState(change);
+    var change = {}
+      change[e.target.name] = e.target.value
+        this.setState(change)
   }
 
   handleSelect(selectedOption){
     this.setState({ selectedOption });
+
   }
+
+  scrollTo(element){
+    window.location.href = element;
+ }
+
 
   componentWillMount(){
     // temporary
@@ -76,59 +84,58 @@ class Main extends Component {
     //
   }
 
-  // submit(){
-  //
-  //   let email = this.state.email;
-  //     var re = email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  //       console.log(re);
-  //         let addUser = [{
-  //             name: this.state.name,
-  //               email: this.state.email,
-  //                 amount: this.state.amount,
-  //                   conversion: Number(this.state.amount) / this.state.change,
-  //                     date:  this.state.date.toString(),
-  //                 }]
-  //
-  //   console.log(addUser);
-  //
-  //   let v = this.state;
-  //   const submitable = v.amount.length > 0 && v.crypto.lenght > 0 && re!== null && v.email.lenght > 0;
-  //   submitable === true ? this.setState({isSubmitable:true}) : null;
-  //
-  //           let data = database.ref()
-  //                             .child('ico/landing/whitelist')
-  //                               .push(addUser ,
-  //                               function(error){
-  //                                 if(error){
-  //                                   console.log(error)
-  //                                 }else{
-  //                                   console.log('data has been saved')
-  //                                   return true;
-  //                                 }
-  //                                 return;
-  //                               })
-  //
-  //             }
+  submit(){
+
+    let email = this.state.email;
+      var re = email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        console.log(re);
+          let addUser = [{
+              name: this.state.name,
+                email: this.state.email,
+                  amount: this.state.amount,
+                    conversion: Number(this.state.amount) / this.state.change,
+                      date:  this.state.date.toString(),
+                  }]
+
+    console.log(addUser);
+
+    // let v = this.state;
+    // const submitable = v.amount.length > 0 && v.crypto.lenght > 0 && re!== null && v.email.lenght > 0;
+    //   submitable === true ? this.setState({isSubmitable:true}) : null;
+
+            let data = database.ref()
+                              .child('ico/landing/whitelist')
+                                .push(addUser ,
+                                function(error){
+                                  if(error){
+                                    console.log(error)
+                                  }else{
+                                    console.log('data has been saved')
+                                    return true;
+                                  }
+                                  return;
+                                })
+
+              }
 
   componentDidMount(){
-    console.log(articles)
     console.log(this.props)
-    // database.ref().on('value' , (snapshot) => {
-    //       console.log(snapshot.val())
-    //     });
-    //     axios.get('https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=10').then(
-    //      function(response){
-    //        return response;
-    //      }
-    //   ).then(data =>{
-    //     console.log(data.data[1].price_usd);
-    //     let price = data.data[1].price_usd;
-    //     data.error ? this.setState({error:'error'}) :
-    //     this.setState({ change: price})
-    //       }).catch(error=>{
-    //         console.log(error);
-    //         throw error;
-    //       });
+    database.ref().on('value' , (snapshot) => {
+          console.log(snapshot.val())
+        });
+        axios.get('https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=10').then(
+         function(response){
+           return response;
+         }
+      ).then(data =>{
+        console.log(data.data[1].price_usd);
+        let price = data.data[1].price_usd;
+        data.error ? this.setState({error:'error'}) :
+        this.setState({ change: price})
+          }).catch(error=>{
+            console.log(error);
+            throw error;
+          });
   }
 
 
@@ -145,38 +152,83 @@ class Main extends Component {
       <div className="container-fluid p-0 m-0" >
 
 
+                  <div className="col-12 mobileMenu h-100 d-sm-none'" style={{display:this.state.isMenu ? 'block' : 'none'}}>
+                    <div className="row no-gutters align-self-center align-items-center h-50 d-flex justify-content-center">
+                      <div className="col-10">
+                        <div className="row no-gutters">
+                          <button className="col-12 text-center">Home</button>
+                          <button className="col-12 text-center">Team</button>
+                          <button className="col-12 text-center">Join</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
             <header className="row no-gutters d-flex" >
-                <div className="col-12" style={{backgroundImage:`url(${header})` , backgroundSize:'cover' , backgroundPosition:'left center' , backgroundRepeat:'no-repeat', height:'100%'}}>>
+                <div className="col-12" style={{backgroundImage:`url(${header})` , backgroundSize:'cover' , backgroundPosition:'left center' , backgroundRepeat:'no-repeat', height:'100%'}}>
                     <div className="row no-gutters d-flex">
-                    <div className="col-12 animated fadeInDown" id="navbar" style={{height:'20vh'}}>
+                    <div className="col-12 animated fadeInDown" id="navbar" style={{height:'20vh' , position:'absolute' , zIndex:200}}>
 
                       <div className="row no-gutters d-flex justify-content-center">
                         <div className="col-12 col-lg-10">
                           <div className="row no-gutters justify-content-center">
 
 
-                          <img src={logo} className="App-logo animated align-self-center fadeInLeft col-4 col-sm-3 col-md-3 mr-auto"  alt="logo" />
+                          <img src={logo} className="App-logo animated  fadeInLeft col-4 col-sm-3 col-md-3 mr-auto"  alt="logo" />
                           <button className="col-auto animated fadeInRight col-2 ml-auto d-sm-none align-self-center navbutton" onClick={() => this.setState({isMenu: true})}>Menù</button>
 
 
-                              <div className="d-none d-sm-block col-sm-auto ml-auto text-left" style={{minHeight:150 , minWidth:'40vw' }}>
+                              <div className="d-none d-sm-block col-sm-auto ml-auto text-left" style={{minHeight:150 , minWidth:'40vw' }} >
 
-                                  <div className="row no-gutters d-flex h-100 animated fadeInRight justify-content-end  align-items-center">
+                                  <div className="row no-gutters d-flex animated h-100 fadeInRight justify-content-end  ">
 
-                                    <Link to="/" className="hoverable upcase col-auto ">Xnm ico</Link>
-                                    <Link to="/contacts" className="hoverable upcase col-auto ">Project</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">Roadmap</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">Team</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">Documents</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">Media & press</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">FAQs</Link>
-                                    <Link to="/team" className="hoverable upcase col-auto ">Support</Link>
-
-
-
+                                  <div className="col-auto">
+                                    <button className="hoverable upcase col-auto " onClick={() => this.scrollTo('#Overview') }>Xnm ico</button>
+                                  </div>
+                                  <div className="col-auto">
+                                    <button className="hoverable upcase col-auto " onClick={() => this.scrollTo('#Project') }>Project</button>
+                                  </div>
+                                  <div className="col-auto">
+                                   <button className="hoverable upcase col-auto " onClick={() => this.scrollTo('#Roadmap') }>Roadmap</button>
+                                   </div>
+                                  <div className="col-auto">
+                                    <button className="hoverable upcase col-auto " onClick={() => this.scrollTo('#Team') }>Team</button>
                                   </div>
 
+                                  <div className="col-auto dropdown" style={{maxWidth:120}}>
+                                      <div className="row no-gutters m-0 p-0">
+                                       <button className=" upcase col-12 " onClick={() => this.setState({dropdown: this.state.dropdown === 'documents' ? '' : 'documents'})}>Contact Us</button>
+                                        <div className="col-12">
+                                            <div className="row no-gutters droppables animate fadeInUp" style={{display:this.state.dropdown === 'documents' ? 'block' : 'none' }}>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Whitepaper</button>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Lightpaper</button>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Greenpaper</button>
+                                            <button className=" upcase col-12 m-0" onClick={() => this.scrollTo('#Support') }>Medium</button>
+                                          </div>
+                                        </div>
+                                       </div>
+                                    </div>
+
+                                  <div className="col-auto">
+                                    <button className="hoverable upcase col-auto " onClick={() => this.scrollTo('#Faqs') }>Faqs</button>
+                                  </div>
+
+                                    <div className="col-auto dropdown" style={{maxWidth:120}}>
+                                      <div className="row no-gutters m-0 p-0">
+                                       <button className=" upcase col-12 " onClick={() => this.setState({dropdown: this.state.dropdown === 'contacts' ? '' : 'contacts'})}>Contact Us</button>
+                                        <div className="col-12">
+                                            <div className="row no-gutters droppables animate fadeInUp" style={{display:this.state.dropdown === 'contacts' ? 'block' : 'none' }}>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Facebook</button>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Linkedin</button>
+                                            <button className=" upcase col-12 m-0 " onClick={() => this.scrollTo('#Support') }>Twitter</button>
+                                            <button className=" upcase col-12 m-0" onClick={() => this.scrollTo('#Support') }>Medium</button>
+                                          </div>
+                                        </div>
+                                       </div>
+                                    </div>
+
+                                  </div>
+                                
                               </div>
 
 
@@ -187,7 +239,7 @@ class Main extends Component {
                       </div>
                     </div>
 
-                    <div className="col-12  " style={{minHeight:'80vh'}}>
+                    <div className="col-12  " style={{minHeight:'80vh' , marginTop:'20vh'}}>
 
                       <div className="row no-gutters d-flex  justify-content-center">
 
@@ -208,7 +260,7 @@ class Main extends Component {
 
             </header>
 
-              <section className="row no-gutters d-flex justify-content-center about alternative contain" id="overview">
+              <section className="row no-gutters d-flex justify-content-center about alternative contain" id="Overview">
 
                   <div className="col-10 h-100 mt-50 mb-50">
 
@@ -253,8 +305,8 @@ class Main extends Component {
 
 
                           <div className="row no-gutters  d-flex justify-content-center mt-50 mb-50">
-                              <button className="radius col-auto col-lg-3 bgreen white  bordergreen light f15 upcase vhb" style={{padding:10 , margin:15 , minWidth:170 }}><i className="fab fa-file-pdf fa  gh" style={{marginRight:5}}></i>Get Whitepaper</button>
-                              <button className="radius col-auto col-lg-3 nobackg  greenhover bordergreen green light upcase f15" style={{ padding:10 , margin:15 , minWidth:170}}><i className="fab fa-list-alt fa wh" style={{marginRight:5}}></i>Join Whitelist</button>
+                              <button className="radius col-auto col-lg-3 bgreen white  bordergreen light f15 upcase vhb" style={{padding:10 , margin:15 , minWidth:170 }}><i className="fab fa-file-pdf fa " style={{marginRight:5}}></i>Get Whitepaper</button>
+                              <button className="radius col-auto col-lg-3 nobackg  greenhover bordergreen green light upcase f15" style={{ padding:10 , margin:15 , minWidth:170}}><i className="fab fa-list-alt fa" style={{marginRight:5}}></i>Join Whitelist</button>
                           </div>
 
 
@@ -279,79 +331,87 @@ class Main extends Component {
                linking="/GitHub"
                buttonIcon="fab fa-github-square fa-2x" altSource="icon"/>
 
-            <section className="row no-gutters d-flex justify-content-center about alternative contain" id="features">
+            <section className="row no-gutters d-flex justify-content-center about alternative contain" id="Project">
 
-                  <div className="col-12 col-sm-11 col-md-10 mt-50 h-100">
+                  <div className="col-12 col-sm-11 col-md-11 mt-50 h-100">
 
                         <p className="green col-12 text-center upcase mt-50 p" >In depth analisys</p>
                           <h1 className="col-12 text-center light upcase h1 ">Main <span className="normal">Features</span></h1>
 
                             <div className="row no-gutters d-flex justify-content-center align-self-center align-items-center features mt-50">
 
-                                <div className="col-10 col-sm-6 col-md-4 feature">
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={smartContract} style={{height:100}} alt=""/>
                                     </div>
+                                  <div className="row no-gutters">
+                                    <p className="green col-12 text-center upcase mt-15" >Payouts regulated with </p>
+                                      <h2 className="col-12 text-center mb-15  light upcase">Smart Contract</h2>
+                                        <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>The payouts, will be splitted directly by the<br/>contract itself, every shareholder will receive<br/> payouts in proportion to their contract shares.</p>
+                                  </div>
 
-                                    <p className="green col-12 text-center upcase" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
-
-                                        <p className="col-12  text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
                                 </div>
 
-                                <div className="col-10 col-sm-6 col-md-4 feature">
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={smartWallet} style={{height:100}} alt=""/>
                                     </div>
-
-                                    <p className="green col-12 text-center upcase f-16" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
-
-                                        <p className="col-12 text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
+                                  <div className="row no-gutters">
+                                    <p className="green col-12 text-center upcase f-16" >Easy management with</p>
+                                      <h2 className="col-12 text-center mb-15 light upcase">Smart Wallet</h2>
+                                        <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>Contracts can be easily managed with the<br/>open-source <span className="bold italic">Smart Wallet App</span> directly<br/>on your Computer, Smartphone or Tablet.</p>
+                                  </div>
                                 </div>
 
-                                <div className="col-10 col-sm-6 col-md-4 feature">
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={market} style={{height:100}} alt=""/>
                                     </div>
 
-                                    <p className="green col-12 text-center upcase f-16" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
-
-                                        <p className="col-12 text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
+                                  <div className="row no-gutters">
+                                    <p className="green col-12 text-center upcase f-16" >Buy and sell contracts on the</p>
+                                      <h2 className="col-12 text-center mb-15 light upcase">Smart Contract Market</h2>
+                                        <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>Mining contracts can be easily buyed or selled <br/>on the <span className="bold italic">Smart Contract Market.</span><br/>Even if brand new or near to be expired.</p>
+                                  </div>
                                 </div>
 
-                                <div className="col-10 col-sm-6 col-md-4 feature">
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={pos} style={{height:100}} alt=""/>
                                     </div>
+                                    <div className="row no-gutters">
 
-                                    <p className="green col-12 text-center upcase f-16" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
+                                        <p className="green col-12 text-center upcase f-16" >Funds secured with</p>
+                                        <h2 className="col-12 text-center mb-15 light upcase">Proof-of-stake</h2>
+                                        <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>Every operator which adopts XNM protocol<br/>should deposit XNM as escrow in proportion<br/>to its own reputation rank on XNM platform.</p>
 
-                                        <p className="col-12 text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
+                                    </div>
                                 </div>
 
-                                <div className="col-10 col-sm-6 col-md-4 feature">
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={pohc} style={{height:100}} alt=""/>
                                     </div>
 
-                                    <p className="green col-12 text-center upcase f-16" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
+                                    <div className="row no-gutters">
 
-                                        <p className="col-12 text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
-                                </div>
+                                      <p className="green col-12 text-center upcase f-16" >Commitment verified with</p>
+                                        <h2 className="col-12 text-center mb-15 light upcase">Proof-of-hashrate</h2>
 
-                                <div className="col-10 col-sm-6 col-md-4 feature ">
+                                          <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>Thanks to the open-source Merkle-Tree based<br/><span className="bold italic">Proof-of-Hashrate-Commitment</span> everyone<br/>will be able to prove the correct hashpower.</p>
+
+                                    </div>
+                                  </div>
+
+                                <div className="col-10 col-sm-6 col-md-6 col-lg-4 feature m-0 p-0 ">
                                     <div className="row no-gutters d-flex justify-content-center">
                                         <img src={dashboard} style={{height:100}} alt=""/>
                                     </div>
-
-                                    <p className="green col-12 text-center upcase f-16" >Payouts regulated with </p>
-                                      <h2 className="col-12 text-center  light upcase">Smart Contract</h2>
-
-                                        <p className="col-12 text-justify" style={{marginBottom:60}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore et animi nihil blanditiis repudiandae, eius molestias, porro velit autem quos necessitatibus officiis totam eos. Neque ullam, dicta error laboriosam iusto!</p>
+                                  <div className="row no-gutters">
+                                    <p className="green col-12 text-center upcase f-16" >Easy reporting check with</p>
+                                      <h2 className="col-12 text-center mb-15 light upcase">Chain report dashboard</h2>
+                                        <p className="col-12 mt-0 text-center" style={{marginBottom:60}}>Every reporting data will be always<br/>available through API and the open-source<br/>tool <span className="bold italic">Chain Report Dashboard</span></p>
+                                  </div>
                                 </div>
 
                             </div>
@@ -364,11 +424,11 @@ class Main extends Component {
             <section className="row no-gutters d-flex justify-content-center" id="benefits" style={{background:`url(${bgpurple})`}}>
 
               <p className="col-12 text-center light white p opaque upcase mt-50">Overview on</p>
-              <h3 className="col-12 text-center light white h1 upcase mb-50 white ">Main <span className="normal">Benefits</span></h3>
+              <h3 className="col-12 text-center light white h1 upcase mb-50 ">Main <span className="normal">Benefits</span></h3>
 
 
 
-              <div className="col-12 col-sm-6 col-lg-3 mb-50 mt-50">
+              <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-50 mt-50">
 
 
                   <div className="row no-gutters d-flex justify-content-center">
@@ -381,13 +441,13 @@ class Main extends Component {
                       <div className="row no-gutters">
                         <p className="col-12 text-left opaque light upcase white">Increase Mining Industry</p>
                           <h4 className="col-12 text-left normal upcase white m-0">Competitiveness</h4>
-                              <p className="col-12 text-left light white m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquam quia ad cum, architecto ut dolorum nisi, nam porro delectus recusandae sequi placeat deserunt adipisci sed illo blanditiis facere enim!</p>
+                              <p className="col-12 text-left light white m-0">The adoption of XNM protocol<br/>by pool and data center will<br/>increase the competitiveness.</p>
                       </div>
                     </div>
                   </div>
               </div>
 
-              <div className="col-12 col-sm-6 col-lg-3 mb-50 mt-50">
+              <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-50 mt-50">
 
 
                   <div className="row no-gutters d-flex justify-content-center">
@@ -400,14 +460,14 @@ class Main extends Component {
                       <div className="row no-gutters">
                         <p className="col-12 text-left opaque light upcase white">Adds a new layer of</p>
                         <h4 className="col-12 text-left normal upcase white m-0">Transparence</h4>
-                              <p className="col-12 text-left light white m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquam quia ad cum, architecto ut dolorum nisi, nam porro delectus recusandae sequi placeat deserunt adipisci sed illo blanditiis facere enim!</p>
+                              <p className="col-12 text-left light white m-0">XNM allows high level of<br/>transparency in pool<br/>signaling and rewards.</p>
                       </div>
                     </div>
                   </div>
               </div>
 
 
-              <div className="col-12 col-sm-6 col-lg-3 mb-50 mt-50">
+              <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-50 mt-50">
 
 
                   <div className="row no-gutters d-flex justify-content-center">
@@ -416,17 +476,17 @@ class Main extends Component {
                         <img src={decentralized} style={{height:40 , margin:5}} alt=""/>
                     </div>
                     </div>
-                    <div className="col-9 ">
+                    <div className="col-9 m-0 p-0 ">
                       <div className="row no-gutters">
-                        <p className="col-12 text-left opaque light upcase white">Helps improving networks</p>
+                        <p className="col-12 text-left opaque light upcase f white">Helps improving networks</p>
                         <h4 className="col-12 text-left normal upcase white m-0">Decentralization</h4>
-                              <p className="col-12 text-left light white m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquam quia ad cum, architecto ut dolorum nisi, nam porro delectus recusandae sequi placeat deserunt adipisci sed illo blanditiis facere enim!</p>
+                        <p className="col-12 text-left light white m-0">XNM will help the various nets<br/>to improve their decentralization<br/>and consequentially their security.</p>
                       </div>
                     </div>
                   </div>
               </div>
 
-              <div className="col-12 col-sm-6 col-lg-3 mb-50 mt-50">
+              <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-50 mt-50">
 
 
                   <div className="row no-gutters d-flex justify-content-center">
@@ -439,7 +499,7 @@ class Main extends Component {
                       <div className="row no-gutters">
                         <p className="col-12 text-left opaque light upcase white">Brings back</p>
                           <h4 className="col-12 text-left normal upcase white m-0">Fairness</h4>
-                              <p className="col-12 text-left light white m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquam quia ad cum, architecto ut dolorum nisi, nam porro delectus recusandae sequi placeat deserunt adipisci sed illo blanditiis facere enim!</p>
+                              <p className="col-12 text-left light white m-0">XNM allows high level of<br/>transparency in pool<br/>signaling and rewards.</p>
                       </div>
                     </div>
                   </div>
@@ -448,7 +508,7 @@ class Main extends Component {
             </section>
 
 
-          <section className="row no-gutters d-flex justify-content-center alternative contain" id="roadmap">
+          <section className="row no-gutters d-flex justify-content-center alternative contain" >
               <p className="lnh green col-12 text-center upcase light  mt-50">Xnm protocol in depth</p>
                 <h3 className="col-12 text-center upcase light">How it <span className="normal">Works</span></h3>
                   <div className="col-10 col-md-4">
@@ -465,8 +525,8 @@ class Main extends Component {
                                 <div className="col-9 ">
                                   <div className="row no-gutters ">
                                     <p className="col-12 text-center text-md-left opaque light upcase violet m-0 p-0">Users buy</p>
-                                      <h4 className="col-12 text-center text-md-left normal upcase lnh ">Xnm Token</h4>
-                                          <p className="col-12 text-center text-md-left light lnh f10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br/> Natus aliquam quia ad cum, architecto ut dolorum nisi.</p>
+                                      <h4 className="col-12 text-center text-md-left normal upcase lnh  ">Xnm Token</h4>
+                                          <p className="col-12 text-center text-md-left light lnh f16">In the ICO or from other users in the Market (XNM will be available on the market after the ICO)</p>
                                   </div>
                                 </div>
                               </div>
@@ -477,15 +537,15 @@ class Main extends Component {
 
                               <div className="row no-gutters d-flex justify-content-center align-self-stretch">
                                 <div className="col-auto p-0 m-0">
-                                <div className="row no-gutters h-100 p-0 m-0">
-                                    <p className="f55 lnh violet" >3</p>
-                                </div>
+                                  <div className="row no-gutters h-100 p-0 m-0">
+                                      <p className="f55 lnh violet" >3</p>
+                                  </div>
                                 </div>
                                 <div className="col-9 ">
                                   <div className="row no-gutters ">
                                     <p className="col-12 text-center text-md-left opaque light upcase violet m-0 p-0">Users locks their xnm</p>
                                       <h4 className="col-12 text-center text-md-left normal upcase lnh ">on the contract</h4>
-                                          <p className="col-12 text-center text-md-left light lnh f10">In a new form to borrow cloud mining<br/>hashrate offer from an operator</p>
+                                          <p className="col-12 text-center text-md-left light lnh f16">In a new form to borrow cloud mining<br/>hashrate offer from an operator</p>
                                   </div>
                                 </div>
                               </div>
@@ -504,7 +564,7 @@ class Main extends Component {
                                   <div className="row no-gutters ">
                                     <p className="col-12 text-center text-md-left opaque light upcase violet m-0 p-0">Users get their</p>
                                       <h4 className="col-12 text-center text-md-left normal upcase lnh ">Block Rewards</h4>
-                                          <p className="col-12 text-center text-md-left light lnh f10">Each user earns a quota according to<br/>how many XNM he ransferred on the<br/>total number of XNM settled in the<br/>hasrate offer of the operator</p>
+                                          <p className="col-12 text-center text-md-left light lnh f16">Each user earns a quota according to<br/>how many XNM he ransferred on the<br/>total number of XNM settled in the<br/>hasrate offer of the operator</p>
                                   </div>
                                 </div>
                               </div>
@@ -527,9 +587,9 @@ class Main extends Component {
 
                                 <div className="col-9 ">
                                   <div className="row no-gutters ">
-                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Users buy</p>
-                                      <h4 className="col-12 text-center text-md-right normal upcase lnh ">Xnm Token</h4>
-                                          <p className="col-12 text-center text-md-right light lnh f10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Natus aliquam quia ad cum, architecto ut dolorum nisi.</p>
+                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Operators creates</p>
+                                      <h4 className="col-12 text-center text-md-right normal upcase lnh ">Smart Contract</h4>
+                                          <p className="col-12 text-center text-md-right light lnh f16">With a public <strong>hashrate offer</strong><br/>for a deetermined number of<br/>XNM to finance mining-ops</p>
                                   </div>
                                 </div>
 
@@ -548,9 +608,9 @@ class Main extends Component {
 
                                 <div className="col-9 ">
                                   <div className="row no-gutters ">
-                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Users locks their xnm</p>
+                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Operators unlocks their xnm</p>
                                       <h4 className="col-12 text-center text-md-right normal upcase lnh ">on the contract</h4>
-                                          <p className="col-12 text-center text-md-right light lnh f10">In a new form to borrow cloud mining<br/>hashrate offer from an operator</p>
+                                          <p className="col-12 text-center text-md-right light lnh f16">In the Smart Contract gradually<br/>once they proof hashing and payouts</p>
                                   </div>
                                 </div>
                                 <div className="col-auto p-0 m-0">
@@ -568,9 +628,9 @@ class Main extends Component {
 
                                 <div className="col-9 ">
                                   <div className="row no-gutters ">
-                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Users get their</p>
-                                      <h4 className="col-12 text-center text-md-right normal upcase lnh ">Block Rewards</h4>
-                                          <p className="col-12 text-center text-md-right light lnh f10">Each user earns a quota according to<br/>how many XNM he ransferred on the<br/>total number of XNM settled in the<br/>hasrate offer of the operator</p>
+                                    <p className="col-12 text-center text-md-right opaque light upcase green m-0 p-0">Upon contract</p>
+                                      <h4 className="col-12 text-center text-md-right normal upcase lnh ">Expires</h4>
+                                          <p className="col-12 text-center text-md-right light lnh f16">The Operator will be allowed by the<br/>Smart Contract to take the remain <br/>XNM funds on it. Each contract is<br/>valid until the last XNM is unlocked</p>
                                   </div>
                                 </div>
                                 <div className="col-auto p-0 m-0">
@@ -595,7 +655,7 @@ class Main extends Component {
              classes="fas fa-shield-alt fa-3x"
              buttonIcon="fab fa-github-square fa-2x" altSource="icon"/>
 
-          <section className="row no-gutters d-flex align-items-center justify-content-center text-center backgrounding" id="Ico" style={{minHeight:'100vh', padding:10 ,background:`url(${bgoverview})`}}>
+          <section className="row no-gutters d-flex align-items-center justify-content-center text-center backgrounding" style={{minHeight:'100vh', padding:10 ,background:`url(${bgoverview})`}}>
 
             <div className="col-12">
 
@@ -698,10 +758,10 @@ class Main extends Component {
                                 <div className="col-6">
                                 <div className="row no-gutters d-flex justify-content-center">
 
-                                    <p className="col-10 white"><span>c</span> 1% Early pre-sale</p>
-                                    <p className="col-10 white"><span>c</span> 57% ICO Token-sale</p>
-                                    <p className="col-10 white"><span>c</span> 3% Reserves</p>
-                                    <p className="col-10 white"><span>c</span> 3% Bounty</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle lightblue"></span> 1% Early pre-sale</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle yellow"></span> 57% ICO Token-sale</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle red"></span> 3% Reserves</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle violet"></span> 3% Bounty</p>
 
                                   </div>
                                 </div>
@@ -709,9 +769,9 @@ class Main extends Component {
                                 <div className="col-6 align-self-center">
                                 <div className="row no-gutters d-flex justify-content-center">
 
-                                    <p className="col-10 white"><span>c</span> 13% Public Pre-sale</p>
-                                    <p className="col-10 white"><span>c</span> 10%% Team & Advisors</p>
-                                    <p className="col-10 white"><span>c</span> 13% Airdrop</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle green"></span> 13% Public Pre-sale</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle orange"></span>10%% Team & Advisors</p>
+                                    <p className="col-10 white"><span className="fas fa-icon fa-circle pink"></span> 13% Airdrop</p>
 
                                   </div>
                                 </div>
@@ -738,9 +798,9 @@ class Main extends Component {
                               <div className="col-6">
                                 <div className="row no-gutters d-flex justify-content-center">
 
-                                  <p className="col-10 white"><span>c</span> 10% Platform</p>
-                                  <p className="col-10 white"><span>c</span> 15% Infrastructure</p>
-                                  <p className="col-10 white"><span>c</span> 7% Legal</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle lightblue"></span> 10% Platform</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle yellow"></span> 15% Infrastructure</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle red"></span> 7% Legal</p>
 
 
                                 </div>
@@ -749,9 +809,9 @@ class Main extends Component {
                               <div className="col-6 align-self-center">
                               <div className="row no-gutters d-flex justify-content-center">
 
-                                  <p className="col-10 white"><span>c</span> 35% Hardware</p>
-                                  <p className="col-10 white"><span>c</span> 15% Marketing</p>
-                                  <p className="col-10 white"><span>c</span> 8% Security</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle green"></span> 35% Hardware</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle orange"></span> 15% Marketing</p>
+                                  <p className="col-10 white"><span className="fas fa-icon fa-circle pink"></span> 8% Security</p>
 
                                 </div>
                               </div>
@@ -867,8 +927,8 @@ class Main extends Component {
                   </div>
               </div>
           </section>
-            <section className="row no-gutters d-flex justify-content-center  ">
-
+            <section className="row no-gutters d-flex justify-content-center alternative contain " id="Roadmap">
+              <Timeline source={bggreen} />
               </section>
 
               <Container image={bgblue}
@@ -886,17 +946,6 @@ class Main extends Component {
 
 
 
-            <div className="col-12 mobileMenu h-100 d-sm-none'" style={{display:this.state.isMenu ? 'block' : 'none'}}>
-              <div className="row no-gutters align-self-center align-items-center h-50 d-flex justify-content-center">
-                <div className="col-10">
-                  <div className="row no-gutters">
-                    <button className="col-12 text-center">Home</button>
-                    <button className="col-12 text-center">Team</button>
-                    <button className="col-12 text-center">Join</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <Team/>
 
@@ -911,13 +960,13 @@ class Main extends Component {
              linking="/GitHub"
              classes="fab fa-medium fa-3x"
              buttonIcon="fab fa-medium fa-2x" altSource="icon"/>
+             
+              <section className="alternative contain row no-gutters d-flex">
 
-             <section className="alternative contain row no-gutters d-flex">
+              <p className="green col-12 text-center upcase p mt-50 mb-0" >Our latest updates on</p>
+              <h1 className="col-12 text-center mt-0 mb-50 upcase light">Media & <span className="normal">Press</span></h1>
 
-             <p className="green col-12 text-center upcase p mt-50 mb-0" >Our latest updates on</p>
-             <h1 className="col-12 text-center mt-0 mb-50 upcase light">Media & <span className="normal">Press</span></h1>
-
-             <div className="col-12 mt-50 mb-50">
+              <div className="col-12 mt-50 mb-50">
                 <div className="row no-gutters">
 
                     {
@@ -943,12 +992,11 @@ class Main extends Component {
                     }
 
                 </div>
-             </div>
+              </div>
 
-             </section>
-
+              </section>
              <Footer
-              source={logo}
+              source={footerlogo}
              />
 
       </div>
@@ -958,3 +1006,4 @@ class Main extends Component {
   }
 }
 export default Main;
+
