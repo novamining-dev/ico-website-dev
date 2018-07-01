@@ -3,7 +3,7 @@
 		"startDev:server": "webpack --cache  --config  webpack.config.server.js",
 		"startDev:client": "webpack-dev-server --progress --inline --hot --config webpack.config.client.js",
 		"startDev:gulp": "gulp",
-		"startDev": "rm -rf ./.build && npm-run-all --parallel startDev:server startDev:client startDev:gulp",
+		"startDev": " erase build && npm-run-all --parallel startDev:server startDev:client startDev:gulp",
 		"startProd:client": "webpack --config webpack.config.clientProd.js",
 		"startProd:server": "node ./server/bin/www",
 		"startProd": "npm-run-all startProd:client startProd:server",

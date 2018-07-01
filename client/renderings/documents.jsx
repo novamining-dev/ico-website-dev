@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router , Route , Link} from 'react-router-dom';
 
 const articles = window["rss"]
-
+console.log(articles)
 export const Documentation = ({match}) => {
 
           return(

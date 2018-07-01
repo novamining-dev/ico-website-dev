@@ -40,6 +40,8 @@ const smartWallet = '/images/icon-smart-wallet.png';
 
 const logo1 = "/images/Logo_1.png";
 const articles = window["rss"];
+console.log(articles);
+
 class Main extends Component {
 
   constructor(props){
@@ -128,8 +130,6 @@ class Main extends Component {
       	const value = selectedOption && selectedOption.value;
         const eth = Number(this.state.amount) / this.state.change;
         const steps = this.state.amount < 10000 ? 500 : this.state.amount < 50000 ? 1000 : 5000;
-        const articles = window["rss"];
-
     return (
     <Router>
       <Switch>
